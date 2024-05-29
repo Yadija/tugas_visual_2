@@ -10,17 +10,22 @@ CONFIG += c++17
 
 SOURCES += \
     formuser.cpp \
+    formwilayah.cpp \
     main.cpp \
     mainwindow.cpp \
-    user.cpp
+    user.cpp \
+    wilayah.cpp
 
 HEADERS += \
     formuser.h \
+    formwilayah.h \
     mainwindow.h \
-    user.h
+    user.h \
+    wilayah.h
 
 FORMS += \
     formuser.ui \
+    formwilayah.ui \
     mainwindow.ui
 
 # Default rules for deployment.

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>186</width>
-    <height>137</height>
+    <width>314</width>
+    <height>141</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -27,13 +27,26 @@
      <string>Form User</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="pushButtonFormWilayah">
+    <property name="geometry">
+     <rect>
+      <x>170</x>
+      <y>30</y>
+      <width>111</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Form Wilayah</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>186</width>
+     <width>314</width>
      <height>22</height>
     </rect>
    </property>

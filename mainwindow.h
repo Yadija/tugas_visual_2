@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <formuser.h>
+#include <formwilayah.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -21,8 +22,11 @@ public:
 private slots:
     void on_pushButtonFormUser_clicked();
 
+    void on_pushButtonFormWilayah_clicked();
+
 private:
     Ui::MainWindow *ui;
     FormUser *formUser;
+    FormWilayah *formWilayah;
 };
 #endif // MAINWINDOW_H

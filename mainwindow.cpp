@@ -8,6 +8,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     formUser = new FormUser;
+    formWilayah = new FormWilayah;
 }
 
 MainWindow::~MainWindow()
@@ -18,5 +19,11 @@ MainWindow::~MainWindow()
 void MainWindow::on_pushButtonFormUser_clicked()
 {
     formUser->show();
+}
+
+
+void MainWindow::on_pushButtonFormWilayah_clicked()
+{
+    formWilayah->show();
 }
 
