@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>FormUser</class>
+ <widget class="QWidget" name="FormUser">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>400</width>
+    <height>286</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QWidget" name="formLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>40</y>
+     <width>331</width>
+     <height>151</height>
+    </rect>
+   </property>
+   <layout class="QFormLayout" name="formLayout">
+    <item row="0" column="0">
+     <widget class="QLabel" name="nIKLabel">
+      <property name="text">
+       <string>NIK</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QLineEdit" name="nIKLineEdit"/>
+    </item>
+    <item row="1" column="0">
+     <widget class="QLabel" name="namaLabel">
+      <property name="text">
+       <string>Nama</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="QLineEdit" name="namaLineEdit"/>
+    </item>
+    <item row="2" column="0">
+     <widget class="QLabel" name="emailLabel">
+      <property name="text">
+       <string>Email</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="1">
+     <widget class="QLineEdit" name="emailLineEdit"/>
+    </item>
+    <item row="3" column="0">
+     <widget class="QLabel" name="roleLabel">
+      <property name="text">
+       <string>Role</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="1">
+     <widget class="QComboBox" name="roleComboBox">
+      <item>
+       <property name="text">
+        <string>Admin</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>User</string>
+       </property>
+      </item>
+     </widget>
+    </item>
+    <item row="4" column="0">
+     <widget class="QLabel" name="passwordLabel">
+      <property name="text">
+       <string>Password</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="1">
+     <widget class="QLineEdit" name="passwordLineEdit"/>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QPushButton" name="pushButtonAdd">
+   <property name="geometry">
+    <rect>
+     <x>270</x>
+     <y>200</y>
+     <width>93</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Add</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButtonEdit">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>200</y>
+     <width>93</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Edit</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButtonDelete">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>230</y>
+     <width>191</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Delete</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
