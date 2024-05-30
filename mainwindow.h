@@ -6,6 +6,7 @@
 #include <formwilayah.h>
 #include <formkapal.h>
 #include <formiup.h>
+#include <formcadangan.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -30,11 +31,14 @@ private slots:
 
     void on_pushButtonFormIUP_clicked();
 
+    void on_pushButtonFormCadangan_clicked();
+
 private:
     Ui::MainWindow *ui;
     FormUser *formUser;
     FormWilayah *formWilayah;
     FormKapal *formKapal;
     FormIUP *formIUP;
+    FormCadangan *formCadangan;
 };
 #endif // MAINWINDOW_H
