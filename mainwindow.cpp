@@ -10,6 +10,7 @@ MainWindow::MainWindow(QWidget *parent)
     formUser = new FormUser;
     formWilayah = new FormWilayah;
     formKapal = new FormKapal;
+    formIUP = new FormIUP;
 }
 
 MainWindow::~MainWindow()
@@ -32,5 +33,11 @@ void MainWindow::on_pushButtonFormWilayah_clicked()
 void MainWindow::on_pushButtonFormKapal_clicked()
 {
     formKapal->show();
+}
+
+
+void MainWindow::on_pushButtonFormIUP_clicked()
+{
+    formIUP->show();
 }
 

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>FormIUP</class>
+ <widget class="QWidget" name="FormIUP">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>400</width>
+    <height>298</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QWidget" name="formLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>30</y>
+     <width>331</width>
+     <height>201</height>
+    </rect>
+   </property>
+   <layout class="QFormLayout" name="formLayout_2">
+    <item row="0" column="0">
+     <widget class="QLabel" name="nomorIUPLabel">
+      <property name="text">
+       <string>Nomor IUP</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QLineEdit" name="nomorIUPLineEdit"/>
+    </item>
+    <item row="1" column="0">
+     <widget class="QLabel" name="lokasiLabel">
+      <property name="text">
+       <string>Lokasi</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="QLineEdit" name="lokasiLineEdit"/>
+    </item>
+    <item row="2" column="0">
+     <widget class="QLabel" name="nomorSKLabel">
+      <property name="text">
+       <string>Nomor SK</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="1">
+     <widget class="QLineEdit" name="nomorSKLineEdit"/>
+    </item>
+    <item row="3" column="0">
+     <widget class="QLabel" name="tanggalBerlakuLabel">
+      <property name="text">
+       <string>Tanggal Berlaku</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="1">
+     <widget class="QLineEdit" name="tanggalBerlakuLineEdit"/>
+    </item>
+    <item row="4" column="0">
+     <widget class="QLabel" name="nomorSertifikatLabel">
+      <property name="text">
+       <string>Nomor Sertifikat</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="1">
+     <widget class="QLineEdit" name="nomorSertifikatLineEdit"/>
+    </item>
+    <item row="5" column="0">
+     <widget class="QLabel" name="keteranganLabel">
+      <property name="text">
+       <string>Keterangan</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="1">
+     <widget class="QLineEdit" name="keteranganLineEdit"/>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QPushButton" name="pushButtonAdd">
+   <property name="geometry">
+    <rect>
+     <x>270</x>
+     <y>230</y>
+     <width>93</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Add</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButtonDelete">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>260</y>
+     <width>191</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Delete</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButtonEdit">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>230</y>
+     <width>93</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Edit</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

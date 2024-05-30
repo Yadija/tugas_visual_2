@@ -9,9 +9,11 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    formiup.cpp \
     formkapal.cpp \
     formuser.cpp \
     formwilayah.cpp \
+    iup.cpp \
     kapal.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -19,15 +21,18 @@ SOURCES += \
     wilayah.cpp
 
 HEADERS += \
+    formiup.h \
     formkapal.h \
     formuser.h \
     formwilayah.h \
+    iup.h \
     kapal.h \
     mainwindow.h \
     user.h \
     wilayah.h
 
 FORMS += \
+    formiup.ui \
     formkapal.ui \
     formuser.ui \
     formwilayah.ui \
