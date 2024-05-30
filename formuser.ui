@@ -17,9 +17,9 @@
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>40</y>
+     <y>60</y>
      <width>331</width>
-     <height>151</height>
+     <height>160</height>
     </rect>
    </property>
    <layout class="QFormLayout" name="formLayout">
@@ -90,7 +90,7 @@
    <property name="geometry">
     <rect>
      <x>270</x>
-     <y>200</y>
+     <y>220</y>
      <width>93</width>
      <height>29</height>
     </rect>
@@ -103,7 +103,7 @@
    <property name="geometry">
     <rect>
      <x>170</x>
-     <y>200</y>
+     <y>220</y>
      <width>93</width>
      <height>29</height>
     </rect>
@@ -116,13 +116,26 @@
    <property name="geometry">
     <rect>
      <x>170</x>
-     <y>230</y>
+     <y>250</y>
      <width>191</width>
      <height>29</height>
     </rect>
    </property>
    <property name="text">
     <string>Delete</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>160</x>
+     <y>20</y>
+     <width>121</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Form User</string>
    </property>
   </widget>
  </widget>

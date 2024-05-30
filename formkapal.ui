@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>205</height>
+    <height>222</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,7 +17,7 @@
    <property name="geometry">
     <rect>
      <x>170</x>
-     <y>150</y>
+     <y>190</y>
      <width>191</width>
      <height>29</height>
     </rect>
@@ -30,7 +30,7 @@
    <property name="geometry">
     <rect>
      <x>270</x>
-     <y>120</y>
+     <y>160</y>
      <width>93</width>
      <height>29</height>
     </rect>
@@ -43,9 +43,9 @@
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>30</y>
+     <y>60</y>
      <width>331</width>
-     <height>91</height>
+     <height>101</height>
     </rect>
    </property>
    <layout class="QFormLayout" name="formLayout_2">
@@ -85,13 +85,26 @@
    <property name="geometry">
     <rect>
      <x>170</x>
-     <y>120</y>
+     <y>160</y>
      <width>93</width>
      <height>29</height>
     </rect>
    </property>
    <property name="text">
     <string>Edit</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>160</x>
+     <y>20</y>
+     <width>121</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Form Kapal</string>
    </property>
   </widget>
  </widget>
