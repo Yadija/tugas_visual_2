@@ -8,17 +8,6 @@ FormIUP::FormIUP(QWidget *parent)
     ui->setupUi(this);
 
     IUP iup;
-
-    QSqlDatabase connect = QSqlDatabase::addDatabase("QODBC");
-    connect.setDatabaseName("dsn_pertambangan");
-    connect.setUserName("root");
-    connect.setPassword("");
-
-    if(connect.open()) {
-        qDebug() << "Database terkoneksi";
-    } else {
-        qDebug() << connect.lastError().text();
-    }
 }
 
 FormIUP::~FormIUP()
