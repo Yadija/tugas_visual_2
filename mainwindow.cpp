@@ -12,6 +12,7 @@ MainWindow::MainWindow(QWidget *parent)
     formKapal = new FormKapal;
     formIUP = new FormIUP;
     formCadangan = new FormCadangan;
+    formRealisasi = new FormRealisasi;
 }
 
 MainWindow::~MainWindow()
@@ -46,5 +47,11 @@ void MainWindow::on_pushButtonFormIUP_clicked()
 void MainWindow::on_pushButtonFormCadangan_clicked()
 {
     formCadangan->show();
+}
+
+
+void MainWindow::on_pushButtonFormCadangan_2_clicked()
+{
+    formRealisasi->show();
 }
 

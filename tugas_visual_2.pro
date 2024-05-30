@@ -13,12 +13,14 @@ SOURCES += \
     formcadangan.cpp \
     formiup.cpp \
     formkapal.cpp \
+    formrealisasi.cpp \
     formuser.cpp \
     formwilayah.cpp \
     iup.cpp \
     kapal.cpp \
     main.cpp \
     mainwindow.cpp \
+    realisasi.cpp \
     user.cpp \
     wilayah.cpp
 
@@ -27,11 +29,13 @@ HEADERS += \
     formcadangan.h \
     formiup.h \
     formkapal.h \
+    formrealisasi.h \
     formuser.h \
     formwilayah.h \
     iup.h \
     kapal.h \
     mainwindow.h \
+    realisasi.h \
     user.h \
     wilayah.h
 
@@ -39,6 +43,7 @@ FORMS += \
     formcadangan.ui \
     formiup.ui \
     formkapal.ui \
+    formrealisasi.ui \
     formuser.ui \
     formwilayah.ui \
     mainwindow.ui

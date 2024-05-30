@@ -79,6 +79,19 @@
      <string>Form Cadangan</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="pushButtonFormCadangan_2">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>80</y>
+      <width>131</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Form Realisasi</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
