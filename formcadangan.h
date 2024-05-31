@@ -2,6 +2,7 @@
 #define FORMCADANGAN_H
 
 #include <QWidget>
+#include <QShowEvent>
 #include <cadangan.h>
 #include <QtSql>
 #include <QSqlDatabase>
@@ -20,6 +21,8 @@ class FormCadangan : public QWidget
 public:
     explicit FormCadangan(QWidget *parent = nullptr);
     ~FormCadangan();
+
+    void showEvent(QShowEvent *event);
 
 private slots:
     void on_pushButtonAdd_clicked();

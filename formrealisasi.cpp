@@ -15,10 +15,26 @@ FormRealisasi::~FormRealisasi()
     delete ui;
 }
 
+void FormRealisasi::showEvent(QShowEvent *event)
+{
+    QWidget::showEvent(event);
+
+    ui->kodeCadanganComboBox->clear();
+
+    QSqlQuery sql(connect);
+
+    sql.prepare("SELECT kd_cad FROM cadangan");
+    sql.exec();
+    while(sql.next()) {
+        QString kodeCadangan = sql.value(sql.record().indexOf("kd_cad")).toString();
+        ui->kodeCadanganComboBox->addItem(kodeCadangan);
+    }
+}
+
 void FormRealisasi::on_pushButtonAdd_clicked()
 {
     realisasi.setKodeRealisasi(ui->kodeRealisasiLineEdit->text());
-    realisasi.setKodeCadangan(ui->kodeCadanganLineEdit->text());
+    realisasi.setKodeCadangan(ui->kodeCadanganComboBox->currentText());
     realisasi.setDSB(ui->dSBLineEdit->text());
     realisasi.setISB(ui->iSBLineEdit->text());
     realisasi.setTSB(ui->tSBLineEdit->text());
@@ -46,7 +62,7 @@ void FormRealisasi::on_pushButtonAdd_clicked()
 void FormRealisasi::on_pushButtonEdit_clicked()
 {
     realisasi.setKodeRealisasi(ui->kodeRealisasiLineEdit->text());
-    realisasi.setKodeCadangan(ui->kodeCadanganLineEdit->text());
+    realisasi.setKodeCadangan(ui->kodeCadanganComboBox->currentText());
     realisasi.setDSB(ui->dSBLineEdit->text());
     realisasi.setISB(ui->iSBLineEdit->text());
     realisasi.setTSB(ui->tSBLineEdit->text());

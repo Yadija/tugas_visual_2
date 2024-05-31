@@ -2,6 +2,7 @@
 #define FORMREALISASI_H
 
 #include <QWidget>
+#include <QShowEvent>
 #include <realisasi.h>
 #include <QtSql>
 #include <QSqlDatabase>
@@ -20,6 +21,8 @@ class FormRealisasi : public QWidget
 public:
     explicit FormRealisasi(QWidget *parent = nullptr);
     ~FormRealisasi();
+
+    void showEvent(QShowEvent *event);
 
 private slots:
     void on_pushButtonAdd_clicked();

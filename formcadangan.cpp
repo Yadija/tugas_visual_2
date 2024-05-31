@@ -15,13 +15,32 @@ FormCadangan::~FormCadangan()
     delete ui;
 }
 
+void FormCadangan::showEvent(QShowEvent *event)
+{
+    QWidget::showEvent(event);
+
+    ui->namaKapalComboBox->clear();
+    ui->nomorIUPComboBox->clear();
+
+    QSqlQuery sql(connect);
+
+    sql.prepare("SELECT kapal.nm_kpl, iup.no_iup FROM kapal, iup");
+    sql.exec();
+    while(sql.next()) {
+        QString namaKapal = sql.value(sql.record().indexOf("nm_kpl")).toString();
+        QString nomorIUP = sql.value(sql.record().indexOf("no_iup")).toString();
+        ui->namaKapalComboBox->addItem(namaKapal);
+        ui->nomorIUPComboBox->addItem(nomorIUP);
+    }
+}
+
 void FormCadangan::on_pushButtonAdd_clicked()
 {
     cadangan.setKodeCadangan(ui->kodeCadanganLineEdit->text());
-    cadangan.setNamaKapal(ui->namaKapalLineEdit->text());
+    cadangan.setNamaKapal(ui->namaKapalComboBox->currentText());
     cadangan.setBulan(ui->bulanLineEdit->text());
     cadangan.setTahun(ui->tahunLineEdit->text());
-    cadangan.setNomorIUP(ui->nomorIUPLineEdit->text());
+    cadangan.setNomorIUP(ui->nomorIUPComboBox->currentText());
     cadangan.setLaut(ui->lautLineEdit->text());
     cadangan.setLuas(ui->luasLineEdit->text());
     cadangan.setDDH(ui->dDHLineEdit->text());
@@ -56,10 +75,10 @@ void FormCadangan::on_pushButtonAdd_clicked()
 void FormCadangan::on_pushButtonEdit_clicked()
 {
     cadangan.setKodeCadangan(ui->kodeCadanganLineEdit->text());
-    cadangan.setNamaKapal(ui->namaKapalLineEdit->text());
+    cadangan.setNamaKapal(ui->namaKapalComboBox->currentText());
     cadangan.setBulan(ui->bulanLineEdit->text());
     cadangan.setTahun(ui->tahunLineEdit->text());
-    cadangan.setNomorIUP(ui->nomorIUPLineEdit->text());
+    cadangan.setNomorIUP(ui->nomorIUPComboBox->currentText());
     cadangan.setLaut(ui->lautLineEdit->text());
     cadangan.setLuas(ui->luasLineEdit->text());
     cadangan.setDDH(ui->dDHLineEdit->text());
