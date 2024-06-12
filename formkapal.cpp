@@ -8,6 +8,23 @@ FormKapal::FormKapal(QWidget *parent)
     ui->setupUi(this);
 
     Kapal kapal;
+
+    loadTableKapal();
+}
+
+void FormKapal::loadTableKapal()
+{
+    tableModel = new QSqlQueryModel(this);
+    tableModel->setQuery("SELECT * FROM kapal ORDER BY nm_kpl ASC");
+
+    tableModel->setHeaderData(0, Qt::Horizontal, QObject::tr("Nama Kapal"));
+    tableModel->setHeaderData(1, Qt::Horizontal, QObject::tr("Instansi"));
+    tableModel->setHeaderData(2, Qt::Horizontal, QObject::tr("Kedalaman Gali"));
+
+    ui->tableKapal->setModel(tableModel);
+    ui->tableKapal->setColumnWidth(0, 200);
+    ui->tableKapal->setColumnWidth(1, 200);
+    ui->tableKapal->setColumnWidth(2, 100);
 }
 
 FormKapal::~FormKapal()
@@ -30,10 +47,12 @@ void FormKapal::on_pushButtonAdd_clicked()
     sql.bindValue(":dlm_gali", kapal.getKedalamanGali());
 
     if(sql.exec()) {
-        qDebug() << "Data Berhasil Disimpan";
+        QMessageBox::information(this, "information", "Data Berhasil Disimpan");
     } else {
-        qDebug() << sql.lastError().text();
+        QMessageBox::information(this, "warning", sql.lastError().text());
     }
+
+    loadTableKapal();
 }
 
 
@@ -52,10 +71,12 @@ void FormKapal::on_pushButtonEdit_clicked()
     sql.bindValue(":dlm_gali", kapal.getKedalamanGali());
 
     if(sql.exec()) {
-        qDebug() << "Data Berhasil Diubah";
+        QMessageBox::information(this, "information", "Data Berhasil Diubah");
     } else {
-        qDebug() << sql.lastError().text();
+        QMessageBox::information(this, "warning", sql.lastError().text());
     }
+
+    loadTableKapal();
 }
 
 
@@ -69,9 +90,11 @@ void FormKapal::on_pushButtonDelete_clicked()
     sql.bindValue(":nm_kpl", kapal.getNamaKapal());
 
     if(sql.exec()) {
-        qDebug() << "Data Berhasil Dihapus";
+        QMessageBox::information(this, "information", "Data Berhasil Dihapus");
     } else {
-        qDebug() << sql.lastError().text();
+        QMessageBox::information(this, "warning", sql.lastError().text());
     }
+
+    loadTableKapal();
 }
 

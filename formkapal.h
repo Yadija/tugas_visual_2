@@ -7,7 +7,9 @@
 #include <QSqlDatabase>
 #include <QSqlError>
 #include <QSqlQuery>
+#include <QSqlQueryModel>
 #include <QDebug>
+#include <QMessageBox>
 
 namespace Ui {
 class FormKapal;
@@ -19,6 +21,9 @@ class FormKapal : public QWidget
 
 public:
     explicit FormKapal(QWidget *parent = nullptr);
+
+    void loadTableKapal();
+
     ~FormKapal();
 
 private slots:
@@ -34,6 +39,7 @@ private:
 
     QSqlDatabase connect;
     QSqlQuery sql;
+    QSqlQueryModel *tableModel;
 };
 
 #endif // FORMKAPAL_H

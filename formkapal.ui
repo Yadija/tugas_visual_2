@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>222</height>
+    <width>975</width>
+    <height>259</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -110,6 +110,16 @@
    </property>
    <property name="text">
     <string>Form Kapal</string>
+   </property>
+  </widget>
+  <widget class="QTableView" name="tableKapal">
+   <property name="geometry">
+    <rect>
+     <x>380</x>
+     <y>60</y>
+     <width>581</width>
+     <height>191</height>
+    </rect>
    </property>
   </widget>
  </widget>
