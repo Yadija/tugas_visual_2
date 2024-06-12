@@ -8,6 +8,31 @@ FormRealisasi::FormRealisasi(QWidget *parent)
     ui->setupUi(this);
 
     Realisasi realisasi;
+
+    loadTableRealisasi();
+}
+
+void FormRealisasi::loadTableRealisasi()
+{
+    tableModel = new QSqlQueryModel(this);
+    tableModel->setQuery("SELECT * FROM realisasi ORDER BY kd_real ASC");
+
+    tableModel->setHeaderData(0, Qt::Horizontal, QObject::tr("Kode Realisasi"));
+    tableModel->setHeaderData(1, Qt::Horizontal, QObject::tr("Kode Cadangan"));
+    tableModel->setHeaderData(2, Qt::Horizontal, QObject::tr("DSB"));
+    tableModel->setHeaderData(3, Qt::Horizontal, QObject::tr("ISB"));
+    tableModel->setHeaderData(4, Qt::Horizontal, QObject::tr("TSB"));
+    tableModel->setHeaderData(5, Qt::Horizontal, QObject::tr("PSB"));
+
+    ui->tableRealisasi->setModel(tableModel);
+    ui->tableRealisasi->setColumnWidth(0, 100);
+    ui->tableRealisasi->setColumnWidth(1, 100);
+    ui->tableRealisasi->setColumnWidth(2, 100);
+    ui->tableRealisasi->setColumnWidth(3, 100);
+    ui->tableRealisasi->setColumnWidth(4, 100);
+    ui->tableRealisasi->setColumnWidth(5, 100);
+
+    ui->tableRealisasi->show();
 }
 
 FormRealisasi::~FormRealisasi()
@@ -52,10 +77,12 @@ void FormRealisasi::on_pushButtonAdd_clicked()
     sql.bindValue(":psb", realisasi.getPSB());
 
     if(sql.exec()) {
-        qDebug() << "Data Berhasil Disimpan";
+        QMessageBox::information(this, "information", "Data Berhasil Disimpan");
     } else {
-        qDebug() << sql.lastError().text();
+        QMessageBox::information(this, "warning", sql.lastError().text());
     }
+
+    loadTableRealisasi();
 }
 
 
@@ -80,10 +107,12 @@ void FormRealisasi::on_pushButtonEdit_clicked()
     sql.bindValue(":psb", realisasi.getPSB());
 
     if(sql.exec()) {
-        qDebug() << "Data Berhasil Diubah";
+        QMessageBox::information(this, "information", "Data Berhasil Diubah");
     } else {
-        qDebug() << sql.lastError().text();
+        QMessageBox::information(this, "warning", sql.lastError().text());
     }
+
+    loadTableRealisasi();
 }
 
 
@@ -97,9 +126,11 @@ void FormRealisasi::on_pushButtonDelete_clicked()
     sql.bindValue(":kd_real", realisasi.getKodeRealisasi());
 
     if(sql.exec()) {
-        qDebug() << "Data Berhasil Dihapus";
+        QMessageBox::information(this, "information", "Data Berhasil Dihapus");
     } else {
-        qDebug() << sql.lastError().text();
+        QMessageBox::information(this, "warning", sql.lastError().text());
     }
+
+    loadTableRealisasi();
 }
 

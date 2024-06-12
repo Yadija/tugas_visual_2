@@ -8,7 +8,9 @@
 #include <QSqlDatabase>
 #include <QSqlError>
 #include <QSqlQuery>
+#include <QSqlQueryModel>
 #include <QDebug>
+#include <QMessageBox>
 
 namespace Ui {
 class FormRealisasi;
@@ -20,6 +22,9 @@ class FormRealisasi : public QWidget
 
 public:
     explicit FormRealisasi(QWidget *parent = nullptr);
+
+    void loadTableRealisasi();
+
     ~FormRealisasi();
 
     void showEvent(QShowEvent *event);
@@ -38,6 +43,7 @@ private:
 
     QSqlDatabase connect;
     QSqlQuery sql;
+    QSqlQueryModel *tableModel;
 };
 
 #endif // FORMREALISASI_H
