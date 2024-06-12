@@ -27,6 +27,12 @@ void FormWilayah::loadTableWilayah()
     ui->tableWilayah->show();
 }
 
+void FormWilayah::clearFormInput()
+{
+    ui->kodeWilayahLineEdit->setText("");
+    ui->namaWilayahLineEdit->setText("");
+}
+
 FormWilayah::~FormWilayah()
 {
     delete ui;
@@ -51,6 +57,7 @@ void FormWilayah::on_pushButtonAdd_clicked()
     }
 
     loadTableWilayah();
+    clearFormInput();
 }
 
 
@@ -72,6 +79,7 @@ void FormWilayah::on_pushButtonEdit_clicked()
     }
 
     loadTableWilayah();
+    clearFormInput();
 }
 
 
@@ -91,5 +99,20 @@ void FormWilayah::on_pushButtonDelete_clicked()
     }
 
     loadTableWilayah();
+    clearFormInput();
+}
+
+
+void FormWilayah::on_pushButtonClear_clicked()
+{
+    clearFormInput();
+}
+
+
+void FormWilayah::on_tableWilayah_activated(const QModelIndex &index)
+{
+    int row = ui->tableWilayah->currentIndex().row();
+    ui->kodeWilayahLineEdit->setText(tableModel->data(tableModel->index(row, 0)).toString());
+    ui->namaWilayahLineEdit->setText(tableModel->data(tableModel->index(row, 1)).toString());
 }
 

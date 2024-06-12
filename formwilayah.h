@@ -23,6 +23,7 @@ public:
     explicit FormWilayah(QWidget *parent = nullptr);
 
     void loadTableWilayah();
+    void clearFormInput();
 
     ~FormWilayah();
 
@@ -32,6 +33,10 @@ private slots:
     void on_pushButtonEdit_clicked();
 
     void on_pushButtonDelete_clicked();
+
+    void on_pushButtonClear_clicked();
+
+    void on_tableWilayah_activated(const QModelIndex &index);
 
 private:
     Ui::FormWilayah *ui;
