@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>187</height>
+    <width>721</width>
+    <height>234</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -100,6 +100,16 @@
    </property>
    <property name="text">
     <string>Form Wilayah</string>
+   </property>
+  </widget>
+  <widget class="QTableView" name="tableWilayah">
+   <property name="geometry">
+    <rect>
+     <x>380</x>
+     <y>50</y>
+     <width>331</width>
+     <height>171</height>
+    </rect>
    </property>
   </widget>
  </widget>

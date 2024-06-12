@@ -8,6 +8,23 @@ FormWilayah::FormWilayah(QWidget *parent)
     ui->setupUi(this);
 
     Wilayah wilayah;
+
+    loadTableWilayah();
+}
+
+void FormWilayah::loadTableWilayah()
+{
+    tableModel = new QSqlQueryModel(this);
+    tableModel->setQuery("SELECT * FROM wilayah ORDER BY kd_wil ASC");
+
+    tableModel->setHeaderData(0, Qt::Horizontal, QObject::tr("Kode Wilayah"));
+    tableModel->setHeaderData(1, Qt::Horizontal, QObject::tr("Nama Wilayah"));
+
+    ui->tableWilayah->setModel(tableModel);
+    ui->tableWilayah->setColumnWidth(0, 100);
+    ui->tableWilayah->setColumnWidth(1, 200);
+
+    ui->tableWilayah->show();
 }
 
 FormWilayah::~FormWilayah()
@@ -28,10 +45,12 @@ void FormWilayah::on_pushButtonAdd_clicked()
     sql.bindValue(":nm_wil", wilayah.getNamaWilayah());
 
     if(sql.exec()) {
-        qDebug() << "Data Berhasil Disimpan";
+        QMessageBox::information(this, "information", "Data Berhasil Disimpan");
     } else {
-        qDebug() << sql.lastError().text();
+        QMessageBox::information(this, "warning", sql.lastError().text());
     }
+
+    loadTableWilayah();
 }
 
 
@@ -47,10 +66,12 @@ void FormWilayah::on_pushButtonEdit_clicked()
     sql.bindValue(":nm_wil", wilayah.getNamaWilayah());
 
     if(sql.exec()) {
-        qDebug() << "Data Berhasil Diubah";
+        QMessageBox::information(this, "information", "Data Berhasil Diubah");
     } else {
-        qDebug() << sql.lastError().text();
+        QMessageBox::information(this, "warning", sql.lastError().text());
     }
+
+    loadTableWilayah();
 }
 
 
@@ -64,9 +85,11 @@ void FormWilayah::on_pushButtonDelete_clicked()
     sql.bindValue(":kd_wil", wilayah.getKodeWilayah());
 
     if(sql.exec()) {
-        qDebug() << "Data Berhasil Dihapus";
+        QMessageBox::information(this, "information", "Data Berhasil Dihapus");
     } else {
-        qDebug() << sql.lastError().text();
+        QMessageBox::information(this, "warning", sql.lastError().text());
     }
+
+    loadTableWilayah();
 }
 

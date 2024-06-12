@@ -7,7 +7,9 @@
 #include <QSqlDatabase>
 #include <QSqlError>
 #include <QSqlQuery>
+#include <QSqlQueryModel>
 #include <QDebug>
+#include <QMessageBox>
 
 namespace Ui {
 class FormWilayah;
@@ -19,6 +21,9 @@ class FormWilayah : public QWidget
 
 public:
     explicit FormWilayah(QWidget *parent = nullptr);
+
+    void loadTableWilayah();
+
     ~FormWilayah();
 
 private slots:
@@ -34,6 +39,7 @@ private:
 
     QSqlDatabase connect;
     QSqlQuery sql;
+    QSqlQueryModel *tableModel;
 };
 
 #endif // FORMWILAYAH_H
