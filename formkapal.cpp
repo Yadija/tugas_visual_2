@@ -27,6 +27,13 @@ void FormKapal::loadTableKapal()
     ui->tableKapal->setColumnWidth(2, 100);
 }
 
+void FormKapal::clearFormInput()
+{
+    ui->namaKapalLineEdit->setText("");
+    ui->instansiLineEdit->setText("");
+    ui->kedalamanGaliLineEdit->setText("");
+}
+
 FormKapal::~FormKapal()
 {
     delete ui;
@@ -53,6 +60,7 @@ void FormKapal::on_pushButtonAdd_clicked()
     }
 
     loadTableKapal();
+    clearFormInput();
 }
 
 
@@ -77,6 +85,7 @@ void FormKapal::on_pushButtonEdit_clicked()
     }
 
     loadTableKapal();
+    clearFormInput();
 }
 
 
@@ -96,5 +105,21 @@ void FormKapal::on_pushButtonDelete_clicked()
     }
 
     loadTableKapal();
+    clearFormInput();
+}
+
+
+void FormKapal::on_pushButtonClear_clicked()
+{
+    clearFormInput();
+}
+
+
+void FormKapal::on_tableKapal_activated(const QModelIndex &index)
+{
+    int row = ui->tableKapal->currentIndex().row();
+    ui->namaKapalLineEdit->setText(tableModel->record(row).value(0).toString());
+    ui->instansiLineEdit->setText(tableModel->record(row).value(1).toString());
+    ui->kedalamanGaliLineEdit->setText(tableModel->record(row).value(2).toString());
 }
 

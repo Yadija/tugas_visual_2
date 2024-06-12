@@ -23,6 +23,7 @@ public:
     explicit FormKapal(QWidget *parent = nullptr);
 
     void loadTableKapal();
+    void clearFormInput();
 
     ~FormKapal();
 
@@ -32,6 +33,10 @@ private slots:
     void on_pushButtonEdit_clicked();
 
     void on_pushButtonDelete_clicked();
+
+    void on_pushButtonClear_clicked();
+
+    void on_tableKapal_activated(const QModelIndex &index);
 
 private:
     Ui::FormKapal *ui;
