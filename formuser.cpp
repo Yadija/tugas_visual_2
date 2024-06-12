@@ -8,6 +8,29 @@ FormUser::FormUser(QWidget *parent)
     ui->setupUi(this);
 
     User user;
+
+    loadTableUser();
+}
+
+void FormUser::loadTableUser()
+{
+    tableModel = new QSqlQueryModel(this);
+    tableModel->setQuery("SELECT * FROM user ORDER BY nik ASC");
+
+    tableModel->setHeaderData(0, Qt::Horizontal, QObject::tr("NIK"));
+    tableModel->setHeaderData(1, Qt::Horizontal, QObject::tr("Nama"));
+    tableModel->setHeaderData(2, Qt::Horizontal, QObject::tr("Email"));
+    tableModel->setHeaderData(3, Qt::Horizontal, QObject::tr("Role"));
+    tableModel->setHeaderData(4, Qt::Horizontal, QObject::tr("password"));
+
+    ui->tableUser->setModel(tableModel);
+    ui->tableUser->setColumnWidth(0, 100);
+    ui->tableUser->setColumnWidth(1, 150);
+    ui->tableUser->setColumnWidth(2, 200);
+    ui->tableUser->setColumnWidth(3, 50);
+    ui->tableUser->setColumnWidth(4, 100);
+
+    ui->tableUser->show();
 }
 
 FormUser::~FormUser()
@@ -34,10 +57,12 @@ void FormUser::on_pushButtonAdd_clicked()
     sql.bindValue(":password", user.getPassword());
 
     if(sql.exec()) {
-        qDebug() << "Data Berhasil Disimpan";
+        QMessageBox::information(this, "information", "Data Berhasil Disimpan");
     } else {
-        qDebug() << sql.lastError().text();
+        QMessageBox::information(this, "warning", sql.lastError().text());
     }
+
+    loadTableUser();
 }
 
 
@@ -60,10 +85,12 @@ void FormUser::on_pushButtonEdit_clicked()
     sql.bindValue(":password", user.getPassword());
 
     if(sql.exec()) {
-        qDebug() << "Data Berhasil Diubah";
+        QMessageBox::information(this, "information", "Data Berhasil Diubah");
     } else {
-        qDebug() << sql.lastError().text();
+        QMessageBox::information(this, "warning", sql.lastError().text());
     }
+
+    loadTableUser();
 }
 
 
@@ -77,9 +104,10 @@ void FormUser::on_pushButtonDelete_clicked()
     sql.bindValue(":nik", user.getNik());
 
     if(sql.exec()) {
-        qDebug() << "Data Berhasil Dihapus";
+        QMessageBox::information(this, "information", "Data Berhasil Dihapus");
     } else {
-        qDebug() << sql.lastError().text();
+        QMessageBox::information(this, "warning", sql.lastError().text());
     }
-}
 
+    loadTableUser();
+}

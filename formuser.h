@@ -7,7 +7,9 @@
 #include <QSqlDatabase>
 #include <QSqlError>
 #include <QSqlQuery>
+#include <QSqlQueryModel>
 #include <QDebug>
+#include <QMessageBox>
 
 namespace Ui {
 class FormUser;
@@ -19,6 +21,9 @@ class FormUser : public QWidget
 
 public:
     explicit FormUser(QWidget *parent = nullptr);
+
+    void loadTableUser();
+
     ~FormUser();
 
 private slots:
@@ -34,6 +39,7 @@ private:
 
     QSqlDatabase connect;
     QSqlQuery sql;
+    QSqlQueryModel *tableModel;
 };
 
 #endif // FORMUSER_H
