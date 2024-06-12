@@ -33,6 +33,15 @@ void FormUser::loadTableUser()
     ui->tableUser->show();
 }
 
+void FormUser::clearFormInput()
+{
+    ui->nIKLineEdit->setText("");
+    ui->namaLineEdit->setText("");
+    ui->emailLineEdit->setText("");
+    ui->roleComboBox->setCurrentIndex(0);
+    ui->passwordLineEdit->setText("");
+}
+
 FormUser::~FormUser()
 {
     delete ui;
@@ -63,6 +72,7 @@ void FormUser::on_pushButtonAdd_clicked()
     }
 
     loadTableUser();
+    clearFormInput();
 }
 
 
@@ -91,6 +101,7 @@ void FormUser::on_pushButtonEdit_clicked()
     }
 
     loadTableUser();
+    clearFormInput();
 }
 
 
@@ -110,4 +121,22 @@ void FormUser::on_pushButtonDelete_clicked()
     }
 
     loadTableUser();
+    clearFormInput();
 }
+
+void FormUser::on_pushButtonClear_clicked()
+{
+    clearFormInput();
+}
+
+
+void FormUser::on_tableUser_activated(const QModelIndex &index)
+{
+    int row = ui->tableUser->currentIndex().row();
+    ui->nIKLineEdit->setText(tableModel->data(tableModel->index(row, 0)).toString());
+    ui->namaLineEdit->setText(tableModel->data(tableModel->index(row, 1)).toString());
+    ui->emailLineEdit->setText(tableModel->data(tableModel->index(row, 2)).toString());
+    ui->roleComboBox->setCurrentText(tableModel->data(tableModel->index(row, 3)).toString());
+    ui->passwordLineEdit->setText(tableModel->data(tableModel->index(row, 4)).toString());
+}
+

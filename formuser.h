@@ -23,6 +23,7 @@ public:
     explicit FormUser(QWidget *parent = nullptr);
 
     void loadTableUser();
+    void clearFormInput();
 
     ~FormUser();
 
@@ -32,6 +33,10 @@ private slots:
     void on_pushButtonEdit_clicked();
 
     void on_pushButtonDelete_clicked();
+
+    void on_pushButtonClear_clicked();
+
+    void on_tableUser_activated(const QModelIndex &index);
 
 private:
     Ui::FormUser *ui;
