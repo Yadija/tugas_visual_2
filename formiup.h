@@ -7,7 +7,9 @@
 #include <QSqlDatabase>
 #include <QSqlError>
 #include <QSqlQuery>
+#include <QSqlQueryModel>
 #include <QDebug>
+#include <QMessageBox>
 
 namespace Ui {
 class FormIUP;
@@ -19,6 +21,9 @@ class FormIUP : public QWidget
 
 public:
     explicit FormIUP(QWidget *parent = nullptr);
+
+    void loadTableIUP();
+
     ~FormIUP();
 
 private slots:
@@ -34,6 +39,7 @@ private:
 
     QSqlDatabase connect;
     QSqlQuery sql;
+    QSqlQueryModel *tableModel;
 };
 
 #endif // FORMIUP_H

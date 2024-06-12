@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>322</height>
+    <width>1064</width>
+    <height>352</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -140,6 +140,16 @@
    </property>
    <property name="text">
     <string>Form IUP</string>
+   </property>
+  </widget>
+  <widget class="QTableView" name="tableIUP">
+   <property name="geometry">
+    <rect>
+     <x>390</x>
+     <y>60</y>
+     <width>661</width>
+     <height>281</height>
+    </rect>
    </property>
   </widget>
  </widget>

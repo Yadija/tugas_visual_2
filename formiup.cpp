@@ -8,6 +8,31 @@ FormIUP::FormIUP(QWidget *parent)
     ui->setupUi(this);
 
     IUP iup;
+
+    loadTableIUP();
+}
+
+void FormIUP::loadTableIUP()
+{
+    tableModel = new QSqlQueryModel(this);
+    tableModel->setQuery("SELECT * FROM iup ORDER BY no_iup ASC");
+
+    tableModel->setHeaderData(0, Qt::Horizontal, QObject::tr("Nomor IUP"));
+    tableModel->setHeaderData(1, Qt::Horizontal, QObject::tr("Lokasi"));
+    tableModel->setHeaderData(2, Qt::Horizontal, QObject::tr("Nomor SK"));
+    tableModel->setHeaderData(3, Qt::Horizontal, QObject::tr("Tgl. Berlaku"));
+    tableModel->setHeaderData(4, Qt::Horizontal, QObject::tr("Nomor Sertifikat"));
+    tableModel->setHeaderData(5, Qt::Horizontal, QObject::tr("Keterangan"));
+
+    ui->tableIUP->setModel(tableModel);
+    ui->tableIUP->setColumnWidth(0, 100);
+    ui->tableIUP->setColumnWidth(1, 100);
+    ui->tableIUP->setColumnWidth(2, 100);
+    ui->tableIUP->setColumnWidth(3, 100);
+    ui->tableIUP->setColumnWidth(4, 100);
+    ui->tableIUP->setColumnWidth(5, 100);
+
+    ui->tableIUP->show();
 }
 
 FormIUP::~FormIUP()
@@ -36,10 +61,12 @@ void FormIUP::on_pushButtonAdd_clicked()
     sql.bindValue(":ket", iup.getKeterangan());
 
     if(sql.exec()) {
-        qDebug() << "Data Berhasil Disimpan";
+        QMessageBox::information(this, "information", "Data Berhasil Disimpan");
     } else {
-        qDebug() << sql.lastError().text();
+        QMessageBox::information(this, "warning", sql.lastError().text());
     }
+
+    loadTableIUP();
 }
 
 
@@ -64,10 +91,12 @@ void FormIUP::on_pushButtonEdit_clicked()
     sql.bindValue(":ket", iup.getKeterangan());
 
     if(sql.exec()) {
-        qDebug() << "Data Berhasil Diubah";
+        QMessageBox::information(this, "information", "Data Berhasil Diubah");
     } else {
-        qDebug() << sql.lastError().text();
+        QMessageBox::information(this, "warning", sql.lastError().text());
     }
+
+    loadTableIUP();
 }
 
 
@@ -81,9 +110,11 @@ void FormIUP::on_pushButtonDelete_clicked()
     sql.bindValue(":no_iup", iup.getNomorIUP());
 
     if(sql.exec()) {
-        qDebug() << "Data Berhasil Dihapus";
+        QMessageBox::information(this, "information", "Data Berhasil Dihapus");
     } else {
-        qDebug() << sql.lastError().text();
+        QMessageBox::information(this, "warning", sql.lastError().text());
     }
+
+    loadTableIUP();
 }
 
