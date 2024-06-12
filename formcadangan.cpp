@@ -8,6 +8,39 @@ FormCadangan::FormCadangan(QWidget *parent)
     ui->setupUi(this);
 
     Cadangan cadangan;
+
+    loadTableCadangan();
+}
+
+void FormCadangan::loadTableCadangan()
+{
+    tableModel = new QSqlQueryModel(this);
+    tableModel->setQuery("SELECT * FROM cadangan ORDER BY kd_cad ASC");
+
+    tableModel->setHeaderData(0, Qt::Horizontal, QObject::tr("Kode Cadangan"));
+    tableModel->setHeaderData(1, Qt::Horizontal, QObject::tr("Kapal"));
+    tableModel->setHeaderData(2, Qt::Horizontal, QObject::tr("Bulan"));
+    tableModel->setHeaderData(3, Qt::Horizontal, QObject::tr("Tahun"));
+    tableModel->setHeaderData(4, Qt::Horizontal, QObject::tr("Nomor IUP"));
+    tableModel->setHeaderData(5, Qt::Horizontal, QObject::tr("Laut"));
+    tableModel->setHeaderData(6, Qt::Horizontal, QObject::tr("Luas"));
+    tableModel->setHeaderData(7, Qt::Horizontal, QObject::tr("DDH"));
+    tableModel->setHeaderData(8, Qt::Horizontal, QObject::tr("IDH"));
+    tableModel->setHeaderData(9, Qt::Horizontal, QObject::tr("TDH"));
+    tableModel->setHeaderData(10, Qt::Horizontal, QObject::tr("PDH"));
+
+    ui->tableCadangan->setModel(tableModel);
+    ui->tableCadangan->setColumnWidth(0, 100);
+    ui->tableCadangan->setColumnWidth(1, 100);
+    ui->tableCadangan->setColumnWidth(2, 100);
+    ui->tableCadangan->setColumnWidth(3, 100);
+    ui->tableCadangan->setColumnWidth(4, 100);
+    ui->tableCadangan->setColumnWidth(5, 100);
+    ui->tableCadangan->setColumnWidth(6, 100);
+    ui->tableCadangan->setColumnWidth(7, 100);
+    ui->tableCadangan->setColumnWidth(8, 100);
+    ui->tableCadangan->setColumnWidth(9, 100);
+    ui->tableCadangan->setColumnWidth(10, 100);
 }
 
 FormCadangan::~FormCadangan()
@@ -65,10 +98,12 @@ void FormCadangan::on_pushButtonAdd_clicked()
     sql.bindValue(":pdh", cadangan.getPDH());
 
     if(sql.exec()) {
-        qDebug() << "Data Berhasil Disimpan";
+        QMessageBox::information(this, "information", "Data Berhasil Disimpan");
     } else {
-        qDebug() << sql.lastError().text();
+        QMessageBox::information(this, "warning", sql.lastError().text());
     }
+
+    loadTableCadangan();
 }
 
 
@@ -103,10 +138,12 @@ void FormCadangan::on_pushButtonEdit_clicked()
     sql.bindValue(":pdh", cadangan.getPDH());
 
     if(sql.exec()) {
-        qDebug() << "Data Berhasil Diubah";
+        QMessageBox::information(this, "information", "Data Berhasil Diubah");
     } else {
-        qDebug() << sql.lastError().text();
+        QMessageBox::information(this, "warning", sql.lastError().text());
     }
+
+    loadTableCadangan();
 }
 
 
@@ -120,9 +157,11 @@ void FormCadangan::on_pushButtonDelete_clicked()
     sql.bindValue(":kd_cad", cadangan.getKodeCadangan());
 
     if(sql.exec()) {
-        qDebug() << "Data Berhasil Dihapus";
+        QMessageBox::information(this, "information", "Data Berhasil Dihapus");
     } else {
-        qDebug() << sql.lastError().text();
+        QMessageBox::information(this, "warning", sql.lastError().text());
     }
+
+    loadTableCadangan();
 }
 

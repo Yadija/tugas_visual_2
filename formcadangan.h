@@ -8,7 +8,9 @@
 #include <QSqlDatabase>
 #include <QSqlError>
 #include <QSqlQuery>
+#include <QSqlQueryModel>
 #include <QDebug>
+#include <QMessageBox>
 
 namespace Ui {
 class FormCadangan;
@@ -20,6 +22,9 @@ class FormCadangan : public QWidget
 
 public:
     explicit FormCadangan(QWidget *parent = nullptr);
+
+    void loadTableCadangan();
+
     ~FormCadangan();
 
     void showEvent(QShowEvent *event);
@@ -37,6 +42,7 @@ private:
 
     QSqlDatabase connect;
     QSqlQuery sql;
+    QSqlQueryModel *tableModel;
 };
 
 #endif // FORMCADANGAN_H
