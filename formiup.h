@@ -23,6 +23,7 @@ public:
     explicit FormIUP(QWidget *parent = nullptr);
 
     void loadTableIUP();
+    void clearFormInput();
 
     ~FormIUP();
 
@@ -32,6 +33,10 @@ private slots:
     void on_pushButtonEdit_clicked();
 
     void on_pushButtonDelete_clicked();
+
+    void on_pushButtonClear_clicked();
+
+    void on_tableIUP_activated(const QModelIndex &index);
 
 private:
     Ui::FormIUP *ui;

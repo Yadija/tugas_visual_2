@@ -35,6 +35,16 @@ void FormIUP::loadTableIUP()
     ui->tableIUP->show();
 }
 
+void FormIUP::clearFormInput()
+{
+    ui->nomorIUPLineEdit->setText("");
+    ui->lokasiLineEdit->setText("");
+    ui->nomorSKLineEdit->setText("");
+    ui->tanggalBerlakuLineEdit->setText("");
+    ui->nomorSertifikatLineEdit->setText("");
+    ui->keteranganLineEdit->setText("");
+}
+
 FormIUP::~FormIUP()
 {
     delete ui;
@@ -67,6 +77,7 @@ void FormIUP::on_pushButtonAdd_clicked()
     }
 
     loadTableIUP();
+    clearFormInput();
 }
 
 
@@ -97,6 +108,7 @@ void FormIUP::on_pushButtonEdit_clicked()
     }
 
     loadTableIUP();
+    clearFormInput();
 }
 
 
@@ -116,5 +128,24 @@ void FormIUP::on_pushButtonDelete_clicked()
     }
 
     loadTableIUP();
+    clearFormInput();
+}
+
+
+void FormIUP::on_pushButtonClear_clicked()
+{
+    clearFormInput();
+}
+
+
+void FormIUP::on_tableIUP_activated(const QModelIndex &index)
+{
+    int row = ui->tableIUP->currentIndex().row();
+    ui->nomorIUPLineEdit->setText(tableModel->data(tableModel->index(row, 0)).toString());
+    ui->lokasiLineEdit->setText(tableModel->data(tableModel->index(row, 1)).toString());
+    ui->nomorSKLineEdit->setText(tableModel->data(tableModel->index(row, 2)).toString());
+    ui->tanggalBerlakuLineEdit->setText(tableModel->data(tableModel->index(row, 3)).toString());
+    ui->nomorSertifikatLineEdit->setText(tableModel->data(tableModel->index(row, 4)).toString());
+    ui->keteranganLineEdit->setText(tableModel->data(tableModel->index(row, 5)).toString());
 }
 
