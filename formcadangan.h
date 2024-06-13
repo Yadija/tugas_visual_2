@@ -24,6 +24,7 @@ public:
     explicit FormCadangan(QWidget *parent = nullptr);
 
     void loadTableCadangan();
+    void clearFormInput();
 
     ~FormCadangan();
 
@@ -35,6 +36,10 @@ private slots:
     void on_pushButtonEdit_clicked();
 
     void on_pushButtonDelete_clicked();
+
+    void on_pushButtonClear_clicked();
+
+    void on_tableCadangan_activated(const QModelIndex &index);
 
 private:
     Ui::FormCadangan *ui;

@@ -43,6 +43,21 @@ void FormCadangan::loadTableCadangan()
     ui->tableCadangan->setColumnWidth(10, 100);
 }
 
+void FormCadangan::clearFormInput()
+{
+    ui->kodeCadanganLineEdit->setText("");
+    ui->namaKapalComboBox->setCurrentText("");
+    ui->bulanLineEdit->setText("");
+    ui->tahunLineEdit->setText("");
+    ui->nomorIUPComboBox->setCurrentText("");
+    ui->lautLineEdit->setText("");
+    ui->luasLineEdit->setText("");
+    ui->dDHLineEdit->setText("");
+    ui->iDHLineEdit->setText("");
+    ui->tDHLineEdit->setText("");
+    ui->pDHLineEdit->setText("");
+}
+
 FormCadangan::~FormCadangan()
 {
     delete ui;
@@ -104,6 +119,7 @@ void FormCadangan::on_pushButtonAdd_clicked()
     }
 
     loadTableCadangan();
+    clearFormInput();
 }
 
 
@@ -144,6 +160,7 @@ void FormCadangan::on_pushButtonEdit_clicked()
     }
 
     loadTableCadangan();
+    clearFormInput();
 }
 
 
@@ -163,5 +180,28 @@ void FormCadangan::on_pushButtonDelete_clicked()
     }
 
     loadTableCadangan();
+    clearFormInput();
+}
+
+
+void FormCadangan::on_pushButtonClear_clicked()
+{
+    clearFormInput();
+}
+
+
+void FormCadangan::on_tableCadangan_activated(const QModelIndex &index)
+{
+    ui->kodeCadanganLineEdit->setText(tableModel->data(tableModel->index(index.row(), 0)).toString());
+    ui->namaKapalComboBox->setCurrentText(tableModel->data(tableModel->index(index.row(), 1)).toString());
+    ui->bulanLineEdit->setText(tableModel->data(tableModel->index(index.row(), 2)).toString());
+    ui->tahunLineEdit->setText(tableModel->data(tableModel->index(index.row(), 3)).toString());
+    ui->nomorIUPComboBox->setCurrentText(tableModel->data(tableModel->index(index.row(), 4)).toString());
+    ui->lautLineEdit->setText(tableModel->data(tableModel->index(index.row(), 5)).toString());
+    ui->luasLineEdit->setText(tableModel->data(tableModel->index(index.row(), 6)).toString());
+    ui->dDHLineEdit->setText(tableModel->data(tableModel->index(index.row(), 7)).toString());
+    ui->iDHLineEdit->setText(tableModel->data(tableModel->index(index.row(), 8)).toString());
+    ui->tDHLineEdit->setText(tableModel->data(tableModel->index(index.row(), 9)).toString());
+    ui->pDHLineEdit->setText(tableModel->data(tableModel->index(index.row(), 10)).toString());
 }
 
