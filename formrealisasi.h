@@ -24,6 +24,7 @@ public:
     explicit FormRealisasi(QWidget *parent = nullptr);
 
     void loadTableRealisasi();
+    void clearFormInput();
 
     ~FormRealisasi();
 
@@ -35,6 +36,10 @@ private slots:
     void on_pushButtonEdit_clicked();
 
     void on_pushButtonDelete_clicked();
+
+    void on_pushButtonClear_clicked();
+
+    void on_tableRealisasi_activated(const QModelIndex &index);
 
 private:
     Ui::FormRealisasi *ui;

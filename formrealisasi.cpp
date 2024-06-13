@@ -35,6 +35,16 @@ void FormRealisasi::loadTableRealisasi()
     ui->tableRealisasi->show();
 }
 
+void FormRealisasi::clearFormInput()
+{
+    ui->kodeRealisasiLineEdit->setText("");
+    ui->kodeCadanganComboBox->setCurrentIndex(0);
+    ui->dSBLineEdit->setText("");
+    ui->iSBLineEdit->setText("");
+    ui->tSBLineEdit->setText("");
+    ui->pSBLineEdit->setText("");
+}
+
 FormRealisasi::~FormRealisasi()
 {
     delete ui;
@@ -83,6 +93,7 @@ void FormRealisasi::on_pushButtonAdd_clicked()
     }
 
     loadTableRealisasi();
+    clearFormInput();
 }
 
 
@@ -113,6 +124,7 @@ void FormRealisasi::on_pushButtonEdit_clicked()
     }
 
     loadTableRealisasi();
+    clearFormInput();
 }
 
 
@@ -132,5 +144,24 @@ void FormRealisasi::on_pushButtonDelete_clicked()
     }
 
     loadTableRealisasi();
+    clearFormInput();
+}
+
+
+void FormRealisasi::on_pushButtonClear_clicked()
+{
+    clearFormInput();
+}
+
+
+void FormRealisasi::on_tableRealisasi_activated(const QModelIndex &index)
+{
+    int row = ui->tableRealisasi->currentIndex().row();
+    ui->kodeRealisasiLineEdit->setText(ui->tableRealisasi->model()->data(ui->tableRealisasi->model()->index(row, 0)).toString());
+    ui->kodeCadanganComboBox->setCurrentText(ui->tableRealisasi->model()->data(ui->tableRealisasi->model()->index(row, 1)).toString());
+    ui->dSBLineEdit->setText(ui->tableRealisasi->model()->data(ui->tableRealisasi->model()->index(row, 2)).toString());
+    ui->iSBLineEdit->setText(ui->tableRealisasi->model()->data(ui->tableRealisasi->model()->index(row, 3)).toString());
+    ui->tSBLineEdit->setText(ui->tableRealisasi->model()->data(ui->tableRealisasi->model()->index(row, 4)).toString());
+    ui->pSBLineEdit->setText(ui->tableRealisasi->model()->data(ui->tableRealisasi->model()->index(row, 5)).toString());
 }
 
