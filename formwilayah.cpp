@@ -40,8 +40,34 @@ FormWilayah::~FormWilayah()
 
 void FormWilayah::on_pushButtonAdd_clicked()
 {
+    auto showMessageAndFocus = [](QWidget *widget, const QString &message) {
+        QMessageBox::information(widget->parentWidget(), "warning", message);
+        widget->setFocus();
+    };
+
+    if(ui->kodeWilayahLineEdit->text().isEmpty()) {
+        showMessageAndFocus(ui->kodeWilayahLineEdit, "Kode Wilayah Belum Di Isi");
+        return;
+    }
+    if(ui->namaWilayahLineEdit->text().isEmpty()) {
+        showMessageAndFocus(ui->namaWilayahLineEdit, "Nama Wilayah Belum Di Isi");
+        return;
+    }
+
     wilayah.setKodeWilayah(ui->kodeWilayahLineEdit->text());
     wilayah.setNamaWilayah(ui->namaWilayahLineEdit->text());
+
+    QSqlQuery duplicate;
+    duplicate.prepare("SELECT kd_wil FROM wilayah WHERE kd_wil = :kd_wil");
+    duplicate.bindValue(":kd_wil", wilayah.getKodeWilayah());
+    duplicate.exec();
+    if(duplicate.next()) {
+        QMessageBox::information(this, "warning", "Kode Wilayah Sudah Ada");
+
+        ui->namaWilayahLineEdit->setText(duplicate.value(1).toString());
+
+        return;
+    }
 
     QSqlQuery sql(connect);
 

@@ -41,13 +41,44 @@ FormKapal::~FormKapal()
 
 void FormKapal::on_pushButtonAdd_clicked()
 {
+    auto showMessageAndFocus = [](QWidget *widget, const QString &message) {
+        QMessageBox::information(widget->parentWidget(), "warning", message);
+        widget->setFocus();
+    };
+
+    if(ui->namaKapalLineEdit->text().isEmpty()) {
+        showMessageAndFocus(ui->namaKapalLineEdit, "Nama Kapal Belum Di Isi");
+        return;
+    }
+    if(ui->instansiLineEdit->text().isEmpty()) {
+        showMessageAndFocus(ui->instansiLineEdit, "Instansi Belum Di Isi");
+        return;
+    }
+    if(ui->kedalamanGaliLineEdit->text().isEmpty()) {
+        showMessageAndFocus(ui->kedalamanGaliLineEdit, "Kedalaman Gali Belum Di Isi");
+        return;
+    }
+
     kapal.setNamaKapal(ui->namaKapalLineEdit->text());
     kapal.setInstansi(ui->instansiLineEdit->text());
     kapal.setKedalamanGali(ui->kedalamanGaliLineEdit->text());
 
+    QSqlQuery duplicate;
+    duplicate.prepare("SELECT * FROM kapal WHERE nm_kpl = :nm_kpl");
+    duplicate.bindValue(":nm_kpl", kapal.getNamaKapal());
+    duplicate.exec();
+    if(duplicate.next()) {
+        QMessageBox::information(this, "warning", "Nama Kapal Sudah Ada");
+
+        ui->instansiLineEdit->setText(duplicate.value(1).toString());
+        ui->kedalamanGaliLineEdit->setText(duplicate.value(2).toString());
+
+        return;
+    }
+
     QSqlQuery sql(connect);
 
-    sql.prepare("INSERT INTO kapal (nm_kpl, instansi, dlm_gali)"
+    sql.prepare("INSERT INTO kapal (nm_kpl, instansi, dlm_gali) "
                 "VALUES (:nm_kpl, :instansi, :dlm_gali)");
     sql.bindValue(":nm_kpl", kapal.getNamaKapal());
     sql.bindValue(":instansi", kapal.getInstansi());

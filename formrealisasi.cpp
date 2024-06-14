@@ -68,12 +68,58 @@ void FormRealisasi::showEvent(QShowEvent *event)
 
 void FormRealisasi::on_pushButtonAdd_clicked()
 {
+    auto showMessageAndFocus = [](QWidget *widget, const QString &message) {
+        QMessageBox::information(widget->parentWidget(), "warning", message);
+        widget->setFocus();
+    };
+
+    if(ui->kodeRealisasiLineEdit->text().isEmpty()) {
+        showMessageAndFocus(this, "Kode Realisasi Tidak Boleh Kosong");
+        return;
+    }
+    if(ui->kodeCadanganComboBox->currentText().isEmpty()) {
+        showMessageAndFocus(this, "Kode Cadangan Tidak Boleh Kosong");
+        return;
+    }
+    if(ui->dSBLineEdit->text().isEmpty()) {
+        showMessageAndFocus(this, "DSB Tidak Boleh Kosong");
+        return;
+    }
+    if(ui->iSBLineEdit->text().isEmpty()) {
+        showMessageAndFocus(this, "ISB Tidak Boleh Kosong");
+        return;
+    }
+    if(ui->tSBLineEdit->text().isEmpty()) {
+        showMessageAndFocus(this, "TSB Tidak Boleh Kosong");
+        return;
+    }
+    if(ui->pSBLineEdit->text().isEmpty()) {
+        showMessageAndFocus(this, "PSB Tidak Boleh Kosong");
+        return;
+    }
+
     realisasi.setKodeRealisasi(ui->kodeRealisasiLineEdit->text());
     realisasi.setKodeCadangan(ui->kodeCadanganComboBox->currentText());
     realisasi.setDSB(ui->dSBLineEdit->text());
     realisasi.setISB(ui->iSBLineEdit->text());
     realisasi.setTSB(ui->tSBLineEdit->text());
     realisasi.setPSB(ui->pSBLineEdit->text());
+
+    QSqlQuery duplicate;
+    duplicate.prepare("SELECT kd_real FROM realisasi WHERE kd_real = :kd_real");
+    duplicate.bindValue(":kd_real", realisasi.getKodeRealisasi());
+    duplicate.exec();
+    if(duplicate.next()) {
+        QMessageBox::information(this, "warning", "Kode Realisasi Tidak Boleh Sama");
+
+        ui->kodeCadanganComboBox->setCurrentText(duplicate.value(1).toString());
+        ui->dSBLineEdit->setText(duplicate.value(2).toString());
+        ui->iSBLineEdit->setText(duplicate.value(3).toString());
+        ui->tSBLineEdit->setText(duplicate.value(4).toString());
+        ui->pSBLineEdit->setText(duplicate.value(5).toString());
+
+        return;
+    }
 
     QSqlQuery sql(connect);
 

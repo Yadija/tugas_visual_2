@@ -84,6 +84,56 @@ void FormCadangan::showEvent(QShowEvent *event)
 
 void FormCadangan::on_pushButtonAdd_clicked()
 {
+    auto showMessageAndFocus = [](QWidget *widget, const QString &message) {
+        QMessageBox::information(widget->parentWidget(), "warning", message);
+        widget->setFocus();
+    };
+
+    if(ui->kodeCadanganLineEdit->text().isEmpty()) {
+        showMessageAndFocus(ui->kodeCadanganLineEdit, "Kode Cadangan Belum Di Isi");
+        return;
+    }
+    if(ui->namaKapalComboBox->currentText().isEmpty()) {
+        showMessageAndFocus(ui->namaKapalComboBox, "Kapal Belum Di Isi");
+        return;
+    }
+    if(ui->bulanLineEdit->text().isEmpty()) {
+        showMessageAndFocus(ui->bulanLineEdit, "Bulan Belum Di Isi");
+        return;
+    }
+    if(ui->tahunLineEdit->text().isEmpty()) {
+        showMessageAndFocus(ui->tahunLineEdit, "Tahun Belum Di Isi");
+        return;
+    }
+    if(ui->nomorIUPComboBox->currentText().isEmpty()) {
+        showMessageAndFocus(ui->nomorIUPComboBox, "Nomor IUP Belum Di Isi");
+        return;
+    }
+    if(ui->lautLineEdit->text().isEmpty()) {
+        showMessageAndFocus(ui->lautLineEdit, "Laut Belum Di Isi");
+        return;
+    }
+    if(ui->luasLineEdit->text().isEmpty()) {
+        showMessageAndFocus(ui->luasLineEdit, "Luas Belum Di Isi");
+        return;
+    }
+    if(ui->dDHLineEdit->text().isEmpty()) {
+        showMessageAndFocus(ui->dDHLineEdit, "DDH Belum Di Isi");
+        return;
+    }
+    if(ui->iDHLineEdit->text().isEmpty()) {
+        showMessageAndFocus(ui->iDHLineEdit, "IDH Belum Di Isi");
+        return;
+    }
+    if(ui->tDHLineEdit->text().isEmpty()) {
+        showMessageAndFocus(ui->tDHLineEdit, "TDH Belum Di Isi");
+        return;
+    }
+    if(ui->pDHLineEdit->text().isEmpty()) {
+        showMessageAndFocus(ui->pDHLineEdit, "PDH Belum Di Isi");
+        return;
+    }
+
     cadangan.setKodeCadangan(ui->kodeCadanganLineEdit->text());
     cadangan.setNamaKapal(ui->namaKapalComboBox->currentText());
     cadangan.setBulan(ui->bulanLineEdit->text());
@@ -95,6 +145,27 @@ void FormCadangan::on_pushButtonAdd_clicked()
     cadangan.setIDH(ui->iDHLineEdit->text());
     cadangan.setTDH(ui->tDHLineEdit->text());
     cadangan.setPDH(ui->pDHLineEdit->text());
+
+    QSqlQuery duplicate;
+    duplicate.prepare("SELECT * FROM cadangan WHERE kd_cad = :kd_cad");
+    duplicate.bindValue(":kd_cad", cadangan.getKodeCadangan());
+    duplicate.exec();
+    if(duplicate.next()) {
+        QMessageBox::information(this, "warning", "Kode Cadangan Sudah Ada");
+
+        ui->namaKapalComboBox->setCurrentText(duplicate.value(1).toString());
+        ui->bulanLineEdit->setText(duplicate.value(2).toString());
+        ui->tahunLineEdit->setText(duplicate.value(3).toString());
+        ui->nomorIUPComboBox->setCurrentText(duplicate.value(4).toString());
+        ui->lautLineEdit->setText(duplicate.value(5).toString());
+        ui->luasLineEdit->setText(duplicate.value(6).toString());
+        ui->dDHLineEdit->setText(duplicate.value(7).toString());
+        ui->iDHLineEdit->setText(duplicate.value(8).toString());
+        ui->tDHLineEdit->setText(duplicate.value(9).toString());
+        ui->pDHLineEdit->setText(duplicate.value(10).toString());
+
+        return;
+    }
 
     QSqlQuery sql(connect);
 

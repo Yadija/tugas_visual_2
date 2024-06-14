@@ -49,15 +49,56 @@ FormUser::~FormUser()
 
 void FormUser::on_pushButtonAdd_clicked()
 {
+    auto showMessageAndFocus = [](QWidget *widget, const QString &message) {
+        QMessageBox::information(widget->parentWidget(), "warning", message);
+        widget->setFocus();
+    };
+
+    if(ui->nIKLineEdit->text().isEmpty()) {
+        showMessageAndFocus(ui->nIKLineEdit, "NIK Belum Di Isi");
+        return;
+    }
+    if(ui->namaLineEdit->text().isEmpty()) {
+        showMessageAndFocus(ui->namaLineEdit, "Nama Belum Di Isi");
+        return;
+    }
+    if(ui->emailLineEdit->text().isEmpty()) {
+        showMessageAndFocus(ui->emailLineEdit, "Email Belum Di Isi");
+        return;
+    }
+    if(ui->roleComboBox->currentText().isEmpty()) {
+        showMessageAndFocus(ui->roleComboBox, "Role Belum Di Isi");
+        return;
+    }
+    if(ui->passwordLineEdit->text().isEmpty()) {
+        showMessageAndFocus(ui->passwordLineEdit, "Password Belum Di Isi");
+        return;
+    }
+
     user.setNik(ui->nIKLineEdit->text());
     user.setNama(ui->namaLineEdit->text());
     user.setEmail(ui->emailLineEdit->text());
     user.setRole(ui->roleComboBox->currentText());
     user.setPassword(ui->passwordLineEdit->text());
 
+    QSqlQuery duplicate;
+    duplicate.prepare("SELECT * FROM user WHERE nik = :nik");
+    duplicate.bindValue(":nik", user.getNik());
+    duplicate.exec();
+    if(duplicate.next()) {
+        QMessageBox::warning(this, "Warning", "NIK sudah ada");
+
+        ui->namaLineEdit->setText(duplicate.value(1).toString());
+        ui->emailLineEdit->setText(duplicate.value(2).toString());
+        ui->roleComboBox->setCurrentText(duplicate.value(3).toString());
+        ui->passwordLineEdit->setText(duplicate.value(4).toString());
+
+        return;
+    }
+
     QSqlQuery sql(connect);
 
-    sql.prepare("INSERT INTO user (nik, nama, email, role, password)"
+    sql.prepare("INSERT INTO user (nik, nama, email, role, password) "
                 "VALUES (:nik, :nama, :email, :role, :password)");
     sql.bindValue(":nik", user.getNik());
     sql.bindValue(":nama", user.getNama());

@@ -52,12 +52,58 @@ FormIUP::~FormIUP()
 
 void FormIUP::on_pushButtonAdd_clicked()
 {
+    auto showMessageAndFocus = [](QWidget *widget, const QString &message) {
+        QMessageBox::information(widget->parentWidget(), "warning", message);
+        widget->setFocus();
+    };
+
+    if(ui->nomorIUPLineEdit->text().isEmpty()) {
+        showMessageAndFocus(ui->nomorIUPLineEdit, "Nomor IUP Belum Di Isi");
+        return;
+    }
+    if(ui->lokasiLineEdit->text().isEmpty()) {
+        showMessageAndFocus(ui->lokasiLineEdit, "Lokasi Belum Di Isi");
+        return;
+    }
+    if(ui->nomorSKLineEdit->text().isEmpty()) {
+        showMessageAndFocus(ui->nomorSKLineEdit, "Nomor SK Belum Di Isi");
+        return;
+    }
+    if(ui->tanggalBerlakuLineEdit->text().isEmpty()) {
+        showMessageAndFocus(ui->tanggalBerlakuLineEdit, "Tgl. Berlaku Belum Di Isi");
+        return;
+    }
+    if(ui->nomorSertifikatLineEdit->text().isEmpty()) {
+        showMessageAndFocus(ui->nomorSertifikatLineEdit, "Nomor Sertifikat Belum Di Isi");
+        return;
+    }
+    if(ui->keteranganLineEdit->text().isEmpty()) {
+        showMessageAndFocus(ui->keteranganLineEdit, "Keterangan Belum Di Isi");
+        return;
+    }
+
     iup.setNomorIUP(ui->nomorIUPLineEdit->text());
     iup.setLokasi(ui->lokasiLineEdit->text());
     iup.setNomorSK(ui->nomorSKLineEdit->text());
     iup.setTanggalBerlaku(ui->tanggalBerlakuLineEdit->text());
     iup.setNomorSertifikat(ui->nomorSertifikatLineEdit->text());
     iup.setKeterangan(ui->keteranganLineEdit->text());
+
+    QSqlQuery duplicate;
+    duplicate.prepare("SELECT * FROM iup WHERE no_iup = :no_iup");
+    duplicate.bindValue(":no_iup", iup.getNomorIUP());
+    duplicate.exec();
+    if(duplicate.next()) {
+        QMessageBox::information(this, "warning", "Nomor IUP Sudah Ada");
+
+        ui->lokasiLineEdit->setText(duplicate.value(1).toString());
+        ui->nomorSKLineEdit->setText(duplicate.value(2).toString());
+        ui->tanggalBerlakuLineEdit->setText(duplicate.value(3).toString());
+        ui->nomorSertifikatLineEdit->setText(duplicate.value(4).toString());
+        ui->keteranganLineEdit->setText(duplicate.value(5).toString());
+
+        return;
+    }
 
     QSqlQuery sql(connect);
 
